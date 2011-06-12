@@ -1,0 +1,34 @@
+UNIVERSIDADE FEDERAL DE SANTA CATARINA
+
+CURSO DE CIÊNCIAS DA COMPUTAÇÃO
+
+INE5421 – Linguagens Formais e Compiladores
+
+Trabalho Prático I - 2011/1
+
+I – Definição:
+Elaborar uma aplicação, com interface gráfica, para manipular AF e ER, que envolva as seguintes operações:
+
+1 – Edição, leitura e gravação de AF e ER.
+2 – Determinização de AFND.
+3 – Minimização de AFD.
+4 – Conversão de AF para ER.
+5 – Conversão de ER para AF (O AF resultante deve ser determinístico e mínimo ou passível de ser determinizado e minimizado através dos algoritmos implementados neste trabalho).
+6 – Uso da ER obtida no item 4 como entrada do item 5;
+7 – Uso do AF obtido no item 5, como entrada do item 4;
+8 – Verificação de equivalência entre ER´s.
+9 – Reconhecimento de sentenças em um AF.
+10 – Enumeração das sentenças de tamanho “n” aceitas por um AF.
+
+II - Observações:
+1 – Representar os AF através de tabelas de transição (a tabela deve ser editável diretamente!).
+2 – Representar os estados de um AF por letras maiúsculas.
+3 – Os símbolos do alfabeto devem ter tamanho 1 e podem ser letras minúsculas, dígitos ou caracteres especiais.
+4 – Usar & para representar épsilon.
+5 - Os nomes de símbolos e estados não devem ser pré-estabelecidos.
+6 – Identificar o estado inicial por  “->”  e os finais por  “*”.
+7 – As ER devem seguir o padrão usado em aula  (Ex.:  a*(b?c|d)*).
+8 – Além da corretude, serão avaliados aspectos de usabilidade e robustez .
+9 – O trabalho deverá ser feito em duplas
+10 – A linguagem de programação é de livre escolha (porém deve ser dominada pelos 2 membros da equipe).
+11 – O trabalho deve ser encaminhado por e-mail, até 06/06, em um único arquivo zipado, contendo relatório (descrevendo a implementação e os algoritmos usados que não foram vistos em aula), fonte (documentado), executável e testes. Usar como nome do arquivo o nome dos componentes da equipe (ex. JoaoF-MariaG.zip).
