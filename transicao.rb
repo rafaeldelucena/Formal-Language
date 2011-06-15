@@ -7,9 +7,12 @@ class Transicao
 	def to_s
 		"(#{@origem}, #{@elemento}) = #{@destino}\n"
 	end
-        def equal?(transicao)
-               (@origem.equal?(transicao.origem) && @destino.equal?(transicao.destino) && @elemento == transicao.elemento) ? true : false
-        end
+	def hash
+		self.to_s.hash
+	end
+    def eql?(transicao)
+    	self.hash == transicao.hash
+	end
 	attr_reader :origem, :destino, :elemento
 	attr_writer :origem, :destino
 end
