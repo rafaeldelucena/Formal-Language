@@ -17,14 +17,8 @@ class Estado
 	def hash
 		@tag.hash
 	end
-	def eql?(estado)
+	def equal?(estado)
 		self.hash == estado.hash
-	end
-	def inicial
-		@inicial = true
-	end
-	def inicial?
-		@inicial
 	end
 	def final
 		@final = true
