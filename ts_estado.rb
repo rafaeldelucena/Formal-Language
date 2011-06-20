@@ -3,7 +3,6 @@ require 'estado'
 
 class TesteEstado < Test::Unit::TestCase
         def setup
-
 		@q0 = Estado.new("q0", Set.new, true, true)
 		
 		@q1 = Estado.new("q1", Set.new, false, false)
@@ -12,7 +11,7 @@ class TesteEstado < Test::Unit::TestCase
 		@q0.add_transicao(@q0, "a")
 		@q0.add_transicao(@q1, "a")
 
-		@transicao_q0 = Set.new([Transicao.new(@q1, "b"), Transicao.new(@q0, "a"), Transicao.new(@q1, "a")])
+		@q0_transicao = Set.new([Transicao.new(@q1, "b"), Transicao.new(@q0, "a"), Transicao.new(@q1, "a")])
 					
 		@q1.add_transicao(@q1, "b")            
                 
@@ -24,7 +23,7 @@ class TesteEstado < Test::Unit::TestCase
                 assert_equal("q0", @q0.tag)
                 assert_equal(true, @q0.final?)
                 assert_equal(false, @q1.final?)
-                assert_same(@q0, Estado.new("q0", @transicao_q0, true, true))
+                assert_same(@q0, Estado.new("q0", @q0_transicao, true, true))
         end
 
         def test_add_transicao

@@ -7,11 +7,17 @@ class TesteAutomato < Test::Unit::TestCase
 
                 @alfabeto = ["a","b"]
 		
-		@transicao_q0 = Set.new([Transicao.new(@q1, "b"), Transicao.new(@q0, "a"), Transicao.new(@q1, "a")])
-		@q0 = Estado.new("q0", transicao_q0, true, true)
+		@q0 = Estado.new("q0", Set.new, true, true)
+		
+		@q1 = Estado.new("q1", Set.new, false, false)
+	
+		@q0.add_transicao(@q1, "b")
+		@q0.add_transicao(@q0, "a")
+		@q0.add_transicao(@q1, "a")
 
-		@transicao_q1 = Set.new([Transicao.new(@q1, "b")])
-                @q1 = Estado.new("q1", transicao_q1, false, false)
+		@q0_transicao = Set.new([Transicao.new(@q1, "b"), Transicao.new(@q0, "a"), Transicao.new(@q1, "a")])
+					
+		@q1.add_transicao(@q1, "b") 
 		
 		
 		@estados = Set.new([@q0, @q1])
