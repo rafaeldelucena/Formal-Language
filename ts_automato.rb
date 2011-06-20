@@ -5,8 +5,9 @@ class TesteAutomato < Test::Unit::TestCase
 
 	def setup
 
-		@q0 = Estado.new("q0", true)
-		@q1 = Estado.new("q1", false)
+		@q0 = Estado.new("q0")
+		@q0.final
+		@q1 = Estado.new("q1")
 		@q1.addTransicao("q1", "b")
 		@q0.addTransicao(@q1, "b")
 		@q0.addTransicao(@q0, "a")
@@ -18,8 +19,8 @@ class TesteAutomato < Test::Unit::TestCase
 	end
 
 	def test_automato
-		assert_equal(@automato1, @automato1)
-		assert_equal(@automato1, @automato2)
+		assert_same(@automato1, @automato1)
+		assert_same(@automato1, @automato2)
 	end
 
 end
