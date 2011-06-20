@@ -2,14 +2,14 @@ require 'set'
 require 'transicao'
 
 class Estado
-	def initialize(tag)
+	def initialize(tag, transicoes, inicial, final)
 		@tag = tag
-		@inicial = false
-		@final = false
-		@transicoes = Set.new
+		@inicial = inicial
+		@final = final
+		@transicoes = transicoes
 	end
-	def addTransicao(destino, elemento)
-		@transicoes.add(Transicao.new(self, destino, elemento))
+	def add_transicao(destino, elemento)
+		@transicoes.add(Transicao.new(destino, elemento))
 	end
 	def to_s
 		"#{@tag}"
@@ -20,25 +20,25 @@ class Estado
 	def equal?(estado)
 		self.hash == estado.hash
 	end
-	def final
-		@final = true
-	end
+        def inicial?
+                @inicial
+        end
 	def final?
 		@final
 	end
-	def getDestino(elemento)
-		getTransicao(elemento).collect {|transicao| transicao.destino }
+	def get_destino(elemento)
+		get_transicao(elemento).collect {|transicao| transicao.destino }
 	end
-	def getTransicao(elemento)
+	def get_transicao(elemento)
 		@transicoes.select {|transicao| transicao if elemento.eql?(transicao.elemento)
 		}
 	end
 	def deterministico?
 		@transicoes.each {|transicao|
-			return false if getDestino(transicao.elemento).size > 1
+			return false if get_destino(transicao.elemento).size > 1
 			}
 		return true
 	end
 	attr_writer :tag
-	attr_reader :tag, :transicoes
+	attr_reader :tag, :transicoes, :final, :inicial
 end

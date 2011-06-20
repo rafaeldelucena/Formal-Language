@@ -1,11 +1,10 @@
 class Transicao
-	def initialize(origem, destino, elemento)
-	        @origem = origem
+	def initialize(destino, elemento)
 		@destino = destino
 		@elemento = elemento
 	end
 	def to_s
-	        "(#{@origem}, #{@elemento}) = #{@destino}\n"
+	        "#{@elemento}) = #{@destino}\n"
 	end
 	def hash
 		self.to_s.hash
@@ -13,6 +12,5 @@ class Transicao
         def equal?(transicao)
     	        self.hash == transicao.hash
 	end
-	attr_reader :origem, :destino, :elemento
-	attr_writer :origem, :destino
+	attr_reader :destino, :elemento
 end
