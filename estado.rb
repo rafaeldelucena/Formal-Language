@@ -11,6 +11,9 @@ class Estado
 	def add_transicao(destino, elemento)
 		@transicoes.add(Transicao.new(destino, elemento))
 	end
+        def add_transicoes(transicoes)
+                transicoes.each {|transicao| @transicoes.add(transicao) }
+        end
 	def to_s
 		"#{@tag}"
 	end
