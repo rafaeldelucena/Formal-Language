@@ -30,17 +30,19 @@ class Estado
 		@final
 	end
 	def get_destino(elemento)
-		get_transicao(elemento).collect {|transicao| transicao.destino }
+			Set.new(get_transicao(elemento).collect {|transicao| transicao.destino })
 	end
 	def get_transicao(elemento)
-		@transicoes.select {|transicao| transicao if elemento.eql?(transicao.elemento)
-		}
+		Set.new(@transicoes.select {|transicao| transicao if elemento.eql?(transicao.elemento)})
 	end
 	def deterministico?
 		@transicoes.each {|transicao|
 			return false if get_destino(transicao.elemento).size > 1
 			}
 		return true
+	end
+	def to_determinize(elemento)
+		get_destino(elemento).size > 1 ? get_destino(elemento) : []
 	end
 	attr_writer :tag
 	attr_reader :tag, :transicoes, :final, :inicial

@@ -15,8 +15,8 @@ class TesteEstado < Test::Unit::TestCase
 					
 		@q1.add_transicao(@q1, "b")            
                 
-                @transicao1 = Transicao.new(@q1, "b")
-                @transicao2 = Transicao.new(@q1, "a")
+        @transicao1 = Transicao.new(@q1, "b")
+        @transicao2 = Transicao.new(@q1, "a")
 		@transicao3 = Transicao.new(@q1, "a")        
         end 
         def test_estado
@@ -46,6 +46,10 @@ class TesteEstado < Test::Unit::TestCase
 	def test_deterministico?
 		assert_equal(false, @q0.deterministico?)
 		assert(true, @q1.deterministico?)
+	end
+	def test_to_determinize
+		assert_equal([], @q0.to_determinize("b"))
+		 assert_equal(Set.new([@q0,@q1]), @q0.to_determinize("a"))
 	end
 end
 

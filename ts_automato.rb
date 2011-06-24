@@ -5,7 +5,7 @@ class TesteAutomato < Test::Unit::TestCase
 
 	def setup
 
-                @alfabeto = ["a","b"]
+        @alfabeto = ["a","b"]
 		
 		@q0 = Estado.new("q0", Set.new, true, true)
 		
@@ -25,16 +25,20 @@ class TesteAutomato < Test::Unit::TestCase
 		@automato2 = Automato.new(@estados, @alfabeto)	
 
 	end
-        def test_estados_automato
-                assert(true, @automato1.conjunto_alfabeto.include?("a"))
-                assert_equal(2, @automato1.conjunto_estados.size)
-                assert(true, @automato1.estados_finais.include?(@q0))
-                assert_equal(1, @automato1.estados_finais.size)
-                assert_equal(1, @automato1.inicial.size)
-                assert_same(@q0, @automato1.inicial.last)
-        end
-        def test_automato_deterministico
-                assert_equal(false, @automato1.deterministico?)
-        end
-        
+    def test_estados_automato
+    	assert(true, @automato1.conjunto_alfabeto.include?("a"))
+        assert_equal(2, @automato1.conjunto_estados.size)
+        assert(true, @automato1.estados_finais.include?(@q0))
+        assert_equal(1, @automato1.estados_finais.size)
+        assert_equal(1, @automato1.inicial.size)
+        assert_same(@q0, @automato1.inicial.last)
+ 	end
+    def test_automato_deterministico
+        assert_equal(false, @automato1.deterministico?)
+    end
+	def test_determinizar
+		assert_equal(false, @q0.deterministico?)
+		assert(true, @automato1.determinizar(@q0).deterministico?)
+
+	end  
 end

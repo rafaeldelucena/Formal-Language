@@ -6,7 +6,7 @@ def juntar_estados(estados)
         novo_final = false
         estados.each {|estado|
                 novo_tag.concat(estado.tag)
-                novo_final = estado.final?
+                novo_final = true if estado.final?
                 estado.transicoes.each {|transicao| 
                         novas_transicoes.add(transicao)
                 }
