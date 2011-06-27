@@ -14,3 +14,16 @@ def juntar_estados(estados)
         
         Estado.new(novo_tag, novas_transicoes, false, novo_final)
  end
+ def afd(automato)
+        lista_verificar = [automato.inicial]
+        conjunto_deterministico = Set.new
+        while !lista_verificar.empty? do
+                lista_verificar.each {|estado|
+                        estado.transicoes.each {|transicao|
+                                conjunto_deterministico.add(automato.determinizar(lista_verificar.pop))
+                                lista_verificar << transicao.destino if !conjunto_deterministico.include?(transicao.destino)
+                        }
+                }
+        end
+                Automato.new(conjunto_deterministico, automato.alfabeto, automato.inicial)       
+end
