@@ -6,14 +6,15 @@ class Estado
 		@tag = tag
 		@inicial = inicial
 		@final = final
-		@transicoes = transicoes
+		@transicoes = Set.new
+		@transicoes.merge(transicoes)
 	end
 	def add_transicao(destino, elemento)
 		@transicoes.add(Transicao.new(destino, elemento))
 	end
         def add_transicoes(transicoes)
-                transicoes.each {|transicao| @transicoes.add(transicao) }
-        end
+        	@transicoes.merge(transicoes)
+	end
 	def to_s
 		"#{@tag}"
 	end
@@ -30,7 +31,7 @@ class Estado
 		@final
 	end
 	def get_destino(elemento)
-			Set.new(get_transicao(elemento).collect {|transicao| transicao.destino })
+		Set.new(get_transicao(elemento).collect {|transicao| transicao.destino })
 	end
 	def get_transicao(elemento)
 		Set.new(@transicoes.select {|transicao| transicao if elemento.eql?(transicao.elemento)})
@@ -38,7 +39,7 @@ class Estado
 	def deterministico?
 		@transicoes.each {|transicao|
 			return false if get_destino(transicao.elemento).size > 1
-			}
+		}
 		return true
 	end
 	def to_determinize(elemento)

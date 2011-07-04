@@ -24,9 +24,13 @@ class TesteAutomato < Test::Unit::TestCase
 		@estados = Set.new([@q0, @q1])
 		@automato1 = Automato.new(@estados, @alfabeto, @q0)
 		@automato2 = Automato.new(@estados, @alfabeto, @q0)	
-
 	end
-        def test_estados_automato
+	def test_automato
+		assert_same(@automato1, @automato1)
+		assert_same(@automato1, Automato.new(@estados, @alfabeto, @q0))
+		assert_same(@automato1, @automato2)
+	end
+	def test_estados_automato
                 assert(true, @automato1.conjunto_alfabeto.include?("a"))
                 assert_equal(2, @automato1.conjunto_estados.size)
                 assert(true, @automato1.estados_finais.include?(@q0))

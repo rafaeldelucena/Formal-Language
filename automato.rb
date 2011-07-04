@@ -11,6 +11,12 @@ class Automato
                 self.estados_automato
                 self.alfabeto_automato
 	end
+	def hash
+		@estados.hash
+	end
+	def equal?(automato)
+		self.hash == automato.hash
+	end
         def estados_finais
                 Set.new([@estados.select {|estado| estado if estado.final? }])
         end
@@ -35,16 +41,16 @@ class Automato
 	def determinizar(estado)
 	        if !estado.deterministico?
 		        estado_determinizado = Estado.new(estado.tag, Set.new, estado.inicial, estado.final)
-			@alfabeto.each {|elemento|
+			estado.transicoes.each {|transicao|
 			        destinos = Set.new
-				estado.get_destino(elemento).each {|destino|
+				estado.get_destino(transicao.elemento).each {|destino|
 				        destinos.add(destino)
 			        }
 			        if destinos.size > 1
 			                novo_estado = juntar_estados(destinos)
-				        estado_determinizado.add_transicao(novo_estado, elemento)
+				        estado_determinizado.add_transicao(novo_estado, transicao.elemento)
 			        else
-				        estado_determinizado.add_transicao(destinos.min, elemento)
+				        estado_determinizado.add_transicao(transicao.destino, transicao.elemento)
 			        end
 		        }
 			return estado_determinizado

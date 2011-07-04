@@ -4,7 +4,7 @@ class Transicao
 		@elemento = elemento
 	end
 	def to_s
-	        "#{@elemento}) = #{@destino}\n"
+	        "(#{@elemento}) = #{@destino}\n"
 	end
 	def hash
 		self.to_s.hash
